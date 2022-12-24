@@ -8,7 +8,7 @@ import * as UserController from './controllers/UserController.js'
 import * as DictionaryController from './controllers/DictionaryController.js'
 
 mongoose
-	.connect('mongodb+srv://admin:22zavesi@cluster0.dd3sxop.mongodb.net/dictionary?retryWrites=true&w=majority')
+	.connect(process.env.MONGODB_URI)
 	.then(() => console.log('DB ok'))
 	.catch((err) => console.log(err))
 
@@ -24,7 +24,7 @@ app.post('/dictionary', checkAuth, DictionaryCreateValidator, DictionaryControll
 
 
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
 	if (err) {
 		return console.log(err);
 	}
